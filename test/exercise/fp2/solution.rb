@@ -14,6 +14,7 @@ module Exercise
       # Написать свою функцию my_map
       def my_map(&func)
         return self if empty?
+
         add_in_arr = ->(arr, el) { arr << func.call(el) }
         MyArray.new(my_reduce([], &add_in_arr))
       end
@@ -27,9 +28,9 @@ module Exercise
       # Написать свою функцию my_reduce
       def my_reduce(acc = nil, &func)
         return acc if empty?
-        drop(1).my_reduce(acc ? func.(acc, first) : first, &func)
-      end
 
+        drop(1).my_reduce(acc ? func.call(acc, first) : first, &func)
+      end
     end
   end
 end
